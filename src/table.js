@@ -1,4 +1,4 @@
-import render, { PureComponent } from 'react';
+import React, { PureComponent } from 'react';
 import styled from 'styled-components';
 
 
