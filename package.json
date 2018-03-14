@@ -1,0 +1,27 @@
+{
+  "name": "@datazone/chart",
+  "version": "1.0.1",
+  "description": "customized charts for data visualization",
+  "main": "lib/index.js",
+  "author": "zero",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "clean": "rimraf lib",
+    "build": "npm run clean && babel src --out-dir lib",
+    "prepublish": "npm run build",
+    "test": "cross-env NODE_ENV=test nyc mocha test/*.spec.js"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1"
+  },
+  "files": [
+    "lib",
+    "package.json",
+    "yarn.lock"
+  ]
+}
