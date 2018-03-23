@@ -1,6 +1,6 @@
 {
   "name": "@datazone/chart",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "customized charts for data visualization",
   "main": "lib/index.js",
   "author": "zero",
@@ -13,9 +13,9 @@
     "test": "cross-env NODE_ENV=test nyc mocha test/*.spec.js"
   },
   "peerDependencies": {
-    "react": "^16.2.0",
     "echarts": "^4.0.4",
     "echarts-for-react": "^2.0.8",
+    "react": "^16.2.0",
     "styled-components": "^3.2.1"
   },
   "devDependencies": {
@@ -29,5 +29,8 @@
     "lib",
     "package.json",
     "yarn.lock"
-  ]
+  ],
+  "dependencies": {
+    "react-countup": "^3.0.3"
+  }
 }

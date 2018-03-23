@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import styled from 'styled-components';
+import Countup from 'react-countup';
 
 const Wrapper = styled.div`
   position: absolute;
@@ -20,7 +21,8 @@ const Title = styled.div`
   text-align: center;
 `;
 
-const IndexNumber = styled.div`
+const IndexNumber = styled(Countup)`
+  display: block;
   color: ${props => props.color || '#30ACFF'};
   font-size: 36px;
   width: 100%;
@@ -32,13 +34,53 @@ const IndexNumber = styled.div`
 // '123456'.replace(/(?=(?!^)(?:\d{3})+(?:\.|$))(\d{3}(\.\d+$)?)/g, ',$1');
 
 export default class Index extends PureComponent {
+  static defaultProps = {
+    decimals: 0,
+    animation: true,
+  };
+
+  state = {
+    start: 0,
+    end: this.props.value,
+  };
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.value !== nextProps.value) {
+      this.setState({
+        start: this.props.value,
+        end: nextProps.value,
+      });
+    }
+  }
+
+  getIndexNumber() {
+    const { animation, decimals, color, valueColor } = this.props;
+    const { start, end } = this.state;
+
+    if (!animation) {
+      return (<IndexNumber color={valueColor}>{value.toLocaleString()}</IndexNumber>);
+    }
+
+    return (
+      <IndexNumber
+        color={color || valueColor}
+        start={start}
+        end={end}
+        separator=","
+        decimals={decimals}
+        decimal="."
+        useEasing
+      />
+    );
+  }
+
   render() {
-    const { name, value = 0, valueColor, ...others } = this.props;
+    const { name, color, valueColor, decimals, animation, ...others } = this.props;
 
     return (
       <Wrapper {...others}>
         <Title>{name}</Title>
-        <IndexNumber color={valueColor}>{value.toLocaleString()}</IndexNumber>
+        {this.getIndexNumber()}
       </Wrapper>
     );
   };
